@@ -20,14 +20,13 @@
 {% extends "_layout" %}
 
 {% block content %}
-	<h1>{{ entry.title }}</h1>
 
-	{{ entry.body }}
+	{% for reason in craft.entries.section('reasons')|reverse %}
+	    <h3>{{reason.title}}</h3>
+	    {{ reason.body }}
 
-	<h2>Recent News</h2>
-	<ul>
-		{% for entry in craft.entries.section('news').limit(5).find() %}
-			<li><a href="{{ entry.url }}">{{ entry.title }}</a></li>
-		{% endfor %}
-	</ul>
+	    <hr/>
+
+	{% endfor %}
+
 {% endblock %}

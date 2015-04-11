@@ -1,3 +1,4 @@
 .DS_Store
 craft/config/license.key
 *.sql
+*bin/
