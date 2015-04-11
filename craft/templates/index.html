@@ -20,12 +20,33 @@
 {% extends "_layout" %}
 
 {% block content %}
+	{% set reasons = craft.entries.section('reasons') %}
+	
+	<center>
+		<h2>Actually, there are <span class="colorize">{{ reasons|length }} reasons</span> from <span class="colorize">{{ craft.tags.group('people')|length }} people</span> <br/>...but who's counting!</h2>
+	</center>
 
-	{% for reason in craft.entries.section('reasons')|reverse %}
+	<br/><hr/>
+
+	{% for reason in reasons|reverse %}
 	    <h3>{{reason.title}}</h3>
+	    
 	    {{ reason.body }}
 
-	    <hr/>
+		{% for person in reason.person %}
+		    {% if loop.first %}- {% endif %}<em><a href="#">{{ person }}</a>{{ not loop.last ? ', ' }}</em>
+		{% endfor %}
+
+	    <p>
+	    	<strong>Tags:</strong> 
+	    	{% for tag in reason.tags %}
+			    <a href="#">{{ tag }}</a>{{ not loop.last ? ', ' }}</em>        
+	    	{% endfor %}
+		</p>
+
+	    {% if not loop.last %}
+	    	<hr/>
+	    {% endif %}
 
 	{% endfor %}
 
