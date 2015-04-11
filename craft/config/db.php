@@ -25,9 +25,9 @@ return array(
         'user'          => 'root',
         'password'      => 'root',
         'database'      => 'ericcraft',
-    )
+    ),
 
-    'prod' => array(
+    '.com' => array(
         'server'        => 'localhost',
         'user'          => 'root',
         'password'      => 'root',
