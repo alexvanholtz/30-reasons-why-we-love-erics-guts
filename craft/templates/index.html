@@ -19,32 +19,86 @@
 
 {% extends "_layout" %}
 
+{% set paramPerson = craft.request.getParam('person') %}
+{% set paramTag = craft.request.getParam('tag') %}
+
+
+{% if paramPerson == NULL %}
+	{% set selectedPerson = craft.tags.groupBy('people') %}
+{% else %}
+	{% set selectedPerson = craft.tags.groupBy('people').slug(paramPerson).first() %}
+{% endif %}
+
+{% if paramTag == NULL %}
+	{% set selectedTag = craft.tags.groupBy('default') %}
+{% else %}
+	{% set selectedTag = craft.tags.groupBy('default').slug(paramTag).first() %}
+{% endif %}
+
+{% set selectedReasons = craft.entries.section('reasons').relatedTo( 'and', {targetElement: selectedTag }, {targetElement: selectedPerson }) %}
+
 {% block content %}
 
-	<ul class="reasons" id="reasons">
+	{% if paramPerson != NULL or paramTag != NULL  %}
 
-	{% for reason in reasons|reverse %}
-		<li id="reason{{loop.index}}" class="wow fadeInUp reason {% if loop.last %}no-border{% endif %}">
+		<div id="results">
 
-		    <h3>Reason {{ loop.index }}</h3>
-		    
-		    {{ reason.body }}
+			<div class="container">
 
-			{% for person in reason.person %}
-			    {% if loop.first %}{% endif %}<a href="#" class="person">{{ person }}</a>{{ not loop.last ? ', ' }}
+				{% if paramTag != NULL %}
+		
+					<h2>Reasons tagged with: <span class="colorize">{{ selectedTag.title }}</span></h2>
+
+				{% endif %}
+
+				{% if paramPerson != NULL %}
+		
+					<h2>Reasons by: <span class="colorize">{{ selectedPerson.title }}</span></h2>
+
+				{% endif %}
+
+
+			</div>
+
+		</div>
+
+	{% endif %}
+
+	<div class="container">
+
+		<ul class="reasons" id="reasons">
+
+		{% if selectedReasons|length %}
+
+			{% for reason in selectedReasons|reverse %}
+				<li id="reason{{loop.index}}" class="wow fadeIn reason {% if loop.last %}no-border{% endif %}">
+
+				    <h3>Reason {{ loop.index }}</h3>
+				    
+				    {{ reason.body }}
+
+					{% for person in reason.person %}
+					    {% if loop.first %}{% endif %}<a href="{{ siteUrl }}?person={{ person.slug }}#results" class="person">{{ person }}</a>{{ not loop.last ? ', ' }}
+					{% endfor %}
+
+				    <span class="tags">
+				    	<strong>Tags: </strong>
+				    	{% for tag in reason.tags %}
+						    <a href="{{ siteUrl }}?tag={{ tag.slug }}#results" class="tag">{{ tag }}</a>
+				    	{% endfor %}
+					</span>
+
+				</li>
+
 			{% endfor %}
+		{% else %}
+			
+			<li>No reasons found with the specified tag.</li>
 
-		    <span class="tags">
-		    	<strong>Tags: </strong>
-		    	{% for tag in reason.tags %}
-				    <a href="#" class="tag">{{ tag }}</a>
-		    	{% endfor %}
-			</span>
+		{% endif %}
 
-		</li>
+		</ul>
 
-	{% endfor %}
-
-	</ul>
+	</div>
 
 {% endblock %}
