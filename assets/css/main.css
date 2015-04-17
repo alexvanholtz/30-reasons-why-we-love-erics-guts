@@ -59,6 +59,10 @@ a{
 	float: left;
 }
 
+.header-image img{
+	max-width: 100%;
+}
+
 .header-text{
 	width: 50%;
 	float: left;
@@ -84,11 +88,16 @@ a{
 	font-size: 30px;
 }
 
-.person{
+a.person{
 	font-size: 25px;
-	color: #fc90fd;
+	color: #963fff;
 	font-style: italic;	
 }
+
+a.person:hover{
+	text-decoration: underline;
+}
+
 
 .tags{
 	display: block;
@@ -112,6 +121,7 @@ a.tag:hover{
 	background-color: #963fff;
 	padding: 20px 0;
 }
+
 /***********
 
 Shared Stuff

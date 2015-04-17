@@ -57,7 +57,6 @@
 
 				{% endif %}
 
-
 			</div>
 
 		</div>
@@ -71,7 +70,7 @@
 		{% if selectedReasons|length %}
 
 			{% for reason in selectedReasons|reverse %}
-				<li id="reason{{loop.index}}" class="wow fadeIn reason {% if loop.last %}no-border{% endif %}">
+				<li id="reason{{loop.index}}" class="wow fadeInUp reason {% if loop.last %}no-border{% endif %}">
 
 				    <h3>Reason {{ loop.index }}</h3>
 				    
