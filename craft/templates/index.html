@@ -20,33 +20,29 @@
 {% extends "_layout" %}
 
 {% block content %}
-	{% set reasons = craft.entries.section('reasons') %}
-	
-	<center>
-		<h2>Actually, there are <span class="colorize">{{ reasons|length }} reasons</span> from <span class="colorize">{{ craft.tags.group('people')|length }} people</span> <br/>...but who's counting!</h2>
-	</center>
-
-	<br/><hr/>
 
 	{% for reason in reasons|reverse %}
-	    <h3>{{reason.title}}</h3>
-	    
-	    {{ reason.body }}
+		<div class="reason {% if loop.last %}no-border{% endif %}">
 
-		{% for person in reason.person %}
-		    {% if loop.first %}- {% endif %}<em><a href="#">{{ person }}</a>{{ not loop.last ? ', ' }}</em>
-		{% endfor %}
+		    <h3>Reason {{ loop.index }}</h3>
+		    
+		    {{ reason.body }}
 
-	    <p>
-	    	<strong>Tags:</strong> 
-	    	{% for tag in reason.tags %}
-			    <a href="#">{{ tag }}</a>{{ not loop.last ? ', ' }}</em>        
-	    	{% endfor %}
-		</p>
+			{% for person in reason.person %}
+			    {% if loop.first %}{% endif %}<a href="#" class="person">{{ person }}</a>{{ not loop.last ? ', ' }}
+			{% endfor %}
 
-	    {% if not loop.last %}
-	    	<hr/>
-	    {% endif %}
+		    <span class="tags">
+		    	<strong>Tags: </strong>
+		    	{% for tag in reason.tags %}
+				    <a href="#" class="tag">{{ tag }}</a>
+		    	{% endfor %}
+			</span>
+
+	{# 	    {% if not loop.last %}
+		    	<hr/>
+		    {% endif %} #}
+		</div>
 
 	{% endfor %}
 
