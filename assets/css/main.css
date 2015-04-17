@@ -33,14 +33,17 @@ a{
 .container { 
 	margin: 0 auto; 
 	max-width: 800px; 
-	/*padding: 25px 0;*/
 }
 
-
 #header {
+	background-image: url('../images/zombz4.jpg');
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
 	background-color: #963fff;
 	width: 100%;
-	padding: 50px 0;
+	padding: 100px 0;
 	color: #fff;
 }
 
@@ -61,9 +64,13 @@ a{
 	position: relative;
 	padding: 50px 0 0 50px;
 	box-sizing: border-box;
-
 }
 
+#reasons{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
 
 .reason{
 	text-align: center;
