@@ -69,7 +69,7 @@
 
 		{% if selectedReasons|length %}
 
-			{% cache globally using key "Reasons" ~ "-" ~ paramPerson ~ "-" ~ paramTag unless craft.config.devMode == false %}
+			{% cache globally using key "Reasons" ~ "-" ~ paramPerson ~ "-" ~ paramTag unless craft.config.devMode %}
 
 				{% for reason in selectedReasons|reverse %}
 					<li id="reason{{loop.index}}" class="wow fadeInUp reason">
