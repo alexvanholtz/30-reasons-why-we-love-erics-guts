@@ -12,11 +12,42 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
 <head>
-	<meta charset="utf-8" />
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />		
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">	
 	<title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
 	<link rel="home" href="{{ siteUrl }}" />
-	<link href='http://fonts.googleapis.com/css?family=Roboto:900,500,400italic,700,500italic,400' rel='stylesheet' type='text/css'>	
-    
+	
+    <!-- Open Graph -->
+    <meta property="og:title" content="30 Reasons Why We Love Eric's Guts" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://30reasonswhyweloveericsguts.com" />
+    <meta property="og:image" content="http://30reasonswhyweloveericsguts.com/assets/images/ericsguts.png" />
+    <meta property="og:site_name" content="30 Reasons Why We Love Eric's Guts" />
+    <meta property="og:description" content="It's Eric's 30th birthday so here are 30+ reasons why all his friends and family love his guts." />
+
+	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{ craft.config.environmentVariables.baseUrl }}assets/images/favicon/apple-touch-icon-57x57.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ craft.config.environmentVariables.baseUrl }}assets/images/favicon/apple-touch-icon-114x114.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ craft.config.environmentVariables.baseUrl }}assets/images/favicon/apple-touch-icon-72x72.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ craft.config.environmentVariables.baseUrl }}assets/images/favicon/apple-touch-icon-144x144.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="60x60" href="{{ craft.config.environmentVariables.baseUrl }}assets/images/favicon/apple-touch-icon-60x60.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="{{ craft.config.environmentVariables.baseUrl }}assets/images/favicon/apple-touch-icon-120x120.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="76x76" href="{{ craft.config.environmentVariables.baseUrl }}assets/images/favicon/apple-touch-icon-76x76.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="{{ craft.config.environmentVariables.baseUrl }}assets/images/favicon/apple-touch-icon-152x152.png" />
+	<link rel="icon" type="image/png" href="{{ craft.config.environmentVariables.baseUrl }}assets/images/favicon/favicon-196x196.png" sizes="196x196" />
+	<link rel="icon" type="image/png" href="{{ craft.config.environmentVariables.baseUrl }}assets/images/favicon/favicon-96x96.png" sizes="96x96" />
+	<link rel="icon" type="image/png" href="{{ craft.config.environmentVariables.baseUrl }}assets/images/favicon/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="{{ craft.config.environmentVariables.baseUrl }}assets/images/favicon/favicon-16x16.png" sizes="16x16" />
+	<link rel="icon" type="image/png" href="{{ craft.config.environmentVariables.baseUrl }}assets/images/favicon/favicon-128.png" sizes="128x128" />
+	<meta name="application-name" content="&nbsp;"/>
+	<meta name="msapplication-TileColor" content="#FFFFFF" />
+	<meta name="msapplication-TileImage" content="{{ craft.config.environmentVariables.baseUrl }}assets/images/favicon/mstile-144x144.png" />
+	<meta name="msapplication-square70x70logo" content="{{ craft.config.environmentVariables.baseUrl }}assets/images/favicon/mstile-70x70.png" />
+	<meta name="msapplication-square150x150logo" content="{{ craft.config.environmentVariables.baseUrl }}assets/images/favicon/mstile-150x150.png" />
+	<meta name="msapplication-wide310x150logo" content="{{ craft.config.environmentVariables.baseUrl }}assets/images/favicon/mstile-310x150.png" />
+	<meta name="msapplication-square310x310logo" content="{{ craft.config.environmentVariables.baseUrl }}assets/images/favicon/mstile-310x310.png" />
+
+	<link href='http://fonts.googleapis.com/css?family=Roboto:900,500,400italic,700,500italic,400' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ craft.config.environmentVariables.baseUrl }}assets/css/animation.css">    
     <link href="{{ craft.config.environmentVariables.baseUrl }}assets/css/main.css" rel="stylesheet">
 
@@ -49,26 +80,27 @@
 
 	</header>
 
-
 	{% block content %}
 		<p>If you see me, you haven’t set your <code>{% verbatim %}{% block content %}…{% endblock %}{% endverbatim %}</code> yet.</p>
 		<p>See Twig’s <a href="http://twig.sensiolabs.org/doc/templates.html#template-inheritance">Template Inheritance</a> documentation for an explanation.</p>
 	{% endblock %}
-	
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="{{ craft.config.environmentVariables.baseUrl }}assets/js/wow.js"></script>  
 	<script type="text/javascript" src="{{ craft.config.environmentVariables.baseUrl }}assets/js/core.js"></script>  
 
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	{% if craft.config.devMode != true %}
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-	  ga('create', 'UA-61807506-1', 'auto');
-	  ga('send', 'pageview');
+		  ga('create', 'UA-61807506-1', 'auto');
+		  ga('send', 'pageview');
 
-	</script>	
+		</script>	
+	{% endif %}
+
 </body>
 </html>
