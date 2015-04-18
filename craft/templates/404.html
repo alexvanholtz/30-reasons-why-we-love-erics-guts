@@ -20,7 +20,26 @@
 {% set title = "404" %}
 
 {% block content %}
-	<h1>Page not found</h1>
+	
+	<header id="header" class="clearfix">
 
-	<p>What’s worse, a hilarious 404 page can’t be found either.</p>
+		<div class="header-wrapper">
+			
+			<div class="header-image">
+				<a href="{{ siteUrl }}"><img class="wow zoomIn" src="{{ craft.config.environmentVariables.baseUrl }}assets/images/ericsguts.png"></a>
+
+			</div>
+			<div class="header-text">
+				<h1 class="wow fadeInDown" >404 - Page Not Found</h1>
+
+				<h2 class="wow fadeInDown">Zombody messed up.</h2>
+
+				<a class="colorize" href="{{ siteUrl }}" >Go back home</a>
+
+			</div>
+
+		</div>
+
+	</header>
+
 {% endblock %}

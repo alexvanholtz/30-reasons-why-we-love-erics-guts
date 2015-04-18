@@ -154,6 +154,10 @@ Shared Stuff
 	font-weight: 500;
 }
 
+a.colorize:hover{
+	text-decoration: underline;
+}
+
 .no-border{
 	border: none;
 }

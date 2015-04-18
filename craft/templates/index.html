@@ -21,7 +21,7 @@
 
 {% set paramPerson = craft.request.getParam('person') %}
 {% set paramTag = craft.request.getParam('tag') %}
-
+{% set reasons = craft.entries.section('reasons') %}
 
 {% if paramPerson == NULL %}
 	{% set selectedPerson = craft.tags.groupBy('people') %}
@@ -35,9 +35,28 @@
 	{% set selectedTag = craft.tags.groupBy('default').slug(paramTag).first() %}
 {% endif %}
 
-{% set selectedReasons = craft.entries.section('reasons').relatedTo( 'and', {targetElement: selectedTag }, {targetElement: selectedPerson }).order('RAND()') %}
+{% set selectedReasons = reasons.relatedTo( 'and', {targetElement: selectedTag }, {targetElement: selectedPerson }).order('RAND()') %}
 
 {% block content %}
+
+	<header id="header" class="clearfix">
+
+		<div class="header-wrapper">
+			
+			<div class="header-image">
+				<a href="{{ siteUrl }}"><img class="wow zoomIn" src="{{ craft.config.environmentVariables.baseUrl }}assets/images/ericsguts.png"></a>
+
+			</div>
+			<div class="header-text">
+				<h1 class="wow fadeInDown">{{ siteName }}</h1>
+
+				<h2 class="wow fadeInDown">Actually, there are <span class="colorize">{{ reasons|length }} reasons</span> from <br/><span class="colorize">{{ craft.tags.group('people').releatedTo(reasons)|length }} people</span>, but who's counting!</h2>
+
+			</div>
+
+		</div>
+
+	</header>
 
 	{% if paramPerson != NULL or paramTag != NULL  %}
 
