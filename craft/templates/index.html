@@ -69,27 +69,31 @@
 
 		{% if selectedReasons|length %}
 
-			{% for reason in selectedReasons|reverse %}
-				<li id="reason{{loop.index}}" class="wow fadeInUp reason">
+			{% cache globally using key "Reasons" ~ "-" ~ paramPerson ~ "-" ~ paramTag unless craft.config.devMode == false %}
 
-				    <h3>Reason {{ loop.index }}</h3>
-				    
-				    {{ reason.body }}
+				{% for reason in selectedReasons|reverse %}
+					<li id="reason{{loop.index}}" class="wow fadeInUp reason">
 
-					{% for person in reason.person %}
-					    {% if loop.first %}{% endif %}<a href="{{ siteUrl }}?person={{ person.slug }}#results" class="person">{{ person }}</a>{{ not loop.last ? ', ' }}
-					{% endfor %}
+					    <h3>Reason {{ loop.index }}</h3>
+					    
+					    {{ reason.body }}
 
-				    <span class="tags">
-				    	<strong>Tags: </strong>
-				    	{% for tag in reason.tags %}
-						    <a href="{{ siteUrl }}?tag={{ tag.slug }}#results" class="tag">{{ tag }}</a>
-				    	{% endfor %}
-					</span>
+						{% for person in reason.person %}
+						    {% if loop.first %}{% endif %}<a href="{{ siteUrl }}?person={{ person.slug }}#results" class="person">{{ person }}</a>{{ not loop.last ? ', ' }}
+						{% endfor %}
 
-				</li>				
+					    <span class="tags">
+					    	<strong>Tags: </strong>
+					    	{% for tag in reason.tags %}
+							    <a href="{{ siteUrl }}?tag={{ tag.slug }}#results" class="tag">{{ tag }}</a>
+					    	{% endfor %}
+						</span>
 
-			{% endfor %}
+					</li>	
+
+				{% endfor %}
+
+			{% endcache %}			
 
 			<li class="show_all wow fadeInUp"><a class="" href="{{ siteUrl }}" >show all reasons</a></li>
 		{% else %}
