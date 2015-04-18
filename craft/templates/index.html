@@ -35,25 +35,25 @@
 	{% set selectedTag = craft.tags.groupBy('default').slug(paramTag).first() %}
 {% endif %}
 
-{% set selectedReasons = craft.entries.section('reasons').relatedTo( 'and', {targetElement: selectedTag }, {targetElement: selectedPerson }) %}
+{% set selectedReasons = craft.entries.section('reasons').relatedTo( 'and', {targetElement: selectedTag }, {targetElement: selectedPerson }).order('RAND()') %}
 
 {% block content %}
 
 	{% if paramPerson != NULL or paramTag != NULL  %}
 
-		<div id="results">
+		<div id="results" class="wow fadeIn">
 
 			<div class="container">
 
 				{% if paramTag != NULL %}
 		
-					<h2>Reasons tagged with: <span class="colorize">{{ selectedTag.title }}</span></h2>
+					<h2>{{ selectedReasons|length }} {% if selectedReasons|length > 1 %}reasons{% else %}reason{% endif %} tagged with <span class="colorize">{{ selectedTag.title }}</span></h2>
 
 				{% endif %}
 
 				{% if paramPerson != NULL %}
 		
-					<h2>Reasons by: <span class="colorize">{{ selectedPerson.title }}</span></h2>
+					<h2>{{ selectedReasons|length }} {% if selectedReasons|length > 1 %}reasons{% else %}reason{% endif %} from <span class="colorize">{{ selectedPerson.title }}</span></h2>
 
 				{% endif %}
 
@@ -70,7 +70,7 @@
 		{% if selectedReasons|length %}
 
 			{% for reason in selectedReasons|reverse %}
-				<li id="reason{{loop.index}}" class="wow fadeInUp reason {% if loop.last %}no-border{% endif %}">
+				<li id="reason{{loop.index}}" class="wow fadeInUp reason">
 
 				    <h3>Reason {{ loop.index }}</h3>
 				    
@@ -87,9 +87,11 @@
 				    	{% endfor %}
 					</span>
 
-				</li>
+				</li>				
 
 			{% endfor %}
+
+			<li class="show_all wow fadeInUp"><a class="" href="{{ siteUrl }}" >show all reasons</a></li>
 		{% else %}
 			
 			<li>No reasons found with the specified tag.</li>
@@ -99,5 +101,15 @@
 		</ul>
 
 	</div>
+
+	<div id="footer" class="wow fadeIn">
+
+		<div class="container">	
+
+			<span class="">&copy; Copyright {{ "now"|date("Y") }} - Happy 30th Birthday Eric!</span>
+
+		</div>
+
+	</div>	
 
 {% endblock %}
