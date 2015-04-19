@@ -118,11 +118,11 @@
 
 		<li class="show_all wow fadeInUp">
 
-			<img class="wow slideInRight" src="{{ craft.config.environmentVariables.baseUrl }}assets/images/littlemustang.png">
+			<a href="{{ siteUrl }}" ><img class="wow slideInRight" src="{{ craft.config.environmentVariables.baseUrl }}assets/images/littlemustang.png"></a>
 
 			<br/><br/><br/>
 
-			<a class="" href="{{ siteUrl }}" >show all reasons</a>
+			<a href="{{ siteUrl }}" >show all reasons</a>
 
 		</li>
 
@@ -134,7 +134,7 @@
 
 		<div class="container">	
 
-			<span class="">&copy; Copyright {{ "now"|date("Y") }} - Happy 30th Birthday Eric!</span>
+			<span class="">&copy; Copyright {{ "now"|date("Y") }} - {{ footer.copyrightText }}</span>
 
 		</div>
 
