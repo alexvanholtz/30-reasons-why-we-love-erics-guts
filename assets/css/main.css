@@ -205,9 +205,17 @@ a.colorize:hover{
 	h2{
 		font-size: 20px;
 	}	
+	h3{
+		font-size: 35px;
+	}
 	#header{
 		padding: 50px 0;
 	}	
+	.reason p{
+		font-size: 25px;
+		margin-bottom: 30px;	
+		padding: 0 50px;	
+	}
 }
 
 @media all and (max-width: 768px){
@@ -243,6 +251,9 @@ a.colorize:hover{
 		width: 100%;
 		padding: 40px 0 0 0;
 	}
+	.reason p{
+		padding: 0 25px;	
+	}
 }
 
 @media all and (max-width: 414px){
@@ -256,7 +267,7 @@ a.colorize:hover{
 	}	
 	.reason p{
 		font-size: 20px;
-		margin-bottom: 30px;
+		padding: 0;			
 	}	
 	h3{
 		font-size: 30px;
