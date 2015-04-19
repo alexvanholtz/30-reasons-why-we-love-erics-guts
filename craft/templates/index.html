@@ -35,7 +35,7 @@
 	{% set selectedTag = craft.tags.groupBy('default').slug(paramTag).first() %}
 {% endif %}
 
-{% set selectedReasons = reasons.relatedTo( 'and', {targetElement: selectedTag }, {targetElement: selectedPerson }).order('RAND()') %}
+{% set selectedReasons = reasons.relatedTo( 'and', {targetElement: selectedPerson }, {targetElement: selectedTag }).order('RAND()') %}
 
 {% block content %}
 
@@ -50,7 +50,7 @@
 			<div class="header-text">
 				<h1 class="wow fadeInDown">{{ siteName }}</h1>
 
-				<h2 class="wow fadeInDown">Actually, there are <span class="colorize">{{ reasons|length }} reasons</span> from <br/><span class="colorize">{{ craft.tags.group('people').releatedTo(reasons)|length }} people</span>, but who's counting!</h2>
+				<h2 class="wow fadeInDown">Actually, there are <span class="colorize">{{ reasons|length }} reasons</span> from <span class="colorize">{{ craft.tags.group('people').releatedTo(reasons)|length }} people</span>, but who's counting!</h2>
 
 			</div>
 
@@ -65,14 +65,15 @@
 			<div class="container">
 
 				{% if paramTag != NULL %}
-		
-					<h2>{{ selectedReasons|length }} {% if selectedReasons|length > 1 %}reasons{% else %}reason{% endif %} tagged with <span class="colorize">{{ selectedTag.title }}</span></h2>
+						
+					<h2>{% if selectedReasons|length %}{{ selectedReasons|length }}{% else %}0{% endif %} {% if selectedReasons|length > 1 or selectedReasons|length == 0 %}reasons{% else %}reason{% endif %} tagged with <span class="colorize">{% if selectedReasons|length %}{{ selectedTag.title }}{% else %}{{ paramTag }}{% endif %}</span></h2>
 
 				{% endif %}
 
 				{% if paramPerson != NULL %}
 		
-					<h2>{{ selectedReasons|length }} {% if selectedReasons|length > 1 %}reasons{% else %}reason{% endif %} from <span class="colorize">{{ selectedPerson.title }}</span></h2>
+					<h2>{% if selectedReasons|length %}{{ selectedReasons|length }}{% else %}0{% endif %} {% if selectedReasons|length > 1 or selectedReasons|length == 0 %}reasons{% else %}reason{% endif %} from <span class="colorize">{% if selectedReasons|length %}{{ selectedPerson.title }}{% else %}{{ paramPerson|capitalize }}{% endif %}</span></h2>
+
 
 				{% endif %}
 
@@ -102,7 +103,6 @@
 						{% endfor %}
 
 					    <span class="tags">
-					    	<strong>Tags: </strong>
 					    	{% for tag in reason.tags %}
 							    <a href="{{ siteUrl }}?tag={{ tag.slug }}#results" class="tag">{{ tag }}</a>
 					    	{% endfor %}
@@ -114,12 +114,10 @@
 
 			{% endcache %}			
 
-			<li class="show_all wow fadeInUp"><a class="" href="{{ siteUrl }}" >show all reasons</a></li>
-		{% else %}
-			
-			<li>No reasons found with the specified tag.</li>
-
 		{% endif %}
+
+		<li class="show_all wow fadeInUp"><a class="" href="{{ siteUrl }}" >show all reasons</a></li>
+
 
 		</ul>
 
