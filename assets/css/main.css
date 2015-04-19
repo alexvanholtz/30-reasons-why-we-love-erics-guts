@@ -245,13 +245,35 @@ a.colorize:hover{
 	}
 }
 
-@media all and (max-width: 600px){
+@media all and (max-width: 414px){
 	h1{
-		font-size: 45px;
+		font-size: 40px;
 		text-align: center;
 	}
 	h2{
 		font-size: 20px;
 		text-align: center;
-	}		
+	}	
+	.reason p{
+		font-size: 20px;
+		margin-bottom: 30px;
+	}	
+	h3{
+		font-size: 30px;
+	}
+	a.person{
+		font-size: 22px;
+	}
+}
+
+@media all and (max-width: 350px){
+	h1{
+		font-size: 30px;
+		text-align: center;
+	}
+	h2{
+		font-size: 18px;
+		text-align: center;
+	}	
+
 }
