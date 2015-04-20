@@ -197,6 +197,13 @@ a.colorize:hover{
 	text-decoration: underline;
 }
 
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
+	.reason:hover{
+		background-image: url('../images/esmall_2x.png');
+		background-repeat: no-repeat;
+		background-size: 182px 190px;
+    }
+}
 
 @media all and (max-width: 1080px){
 	h1{
@@ -234,6 +241,19 @@ a.colorize:hover{
 		padding: 0 50px;	
 		line-height: 40px;
 	}
+	.reason:hover{
+		background-image: url('../images/esmaller.png');
+		background-size: 154px 160px;		
+    }	
+	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
+		.reason:hover{
+			background-image: url('../images/esmaller_x2.png');
+			background-repeat: no-repeat;
+			background-size: 154px 160px;
+	    }	
+
+	}
+
 }
 
 @media all and (max-width: 768px){
