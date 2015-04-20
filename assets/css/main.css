@@ -39,6 +39,10 @@ a{
 	color: #963fff;	
 }
 
+img{
+	max-width: 100%;
+}
+
 .container { 
 	margin: 0 auto; 
 	max-width: 800px; 
@@ -66,10 +70,6 @@ a{
 .header-image{
 	width: 50%;	
 	float: left;
-}
-
-.header-image img{
-	max-width: 100%;
 }
 
 .header-text{
@@ -171,7 +171,8 @@ a.colorize:hover{
 
 .show_all{
 	text-align: center;
-	margin: 50px auto 50px;	
+	margin: 50px auto 50px;
+	padding: 0 20px;	
 }
 
 .show_all a{
@@ -181,6 +182,7 @@ a.colorize:hover{
 .show_all a:hover{
 	text-decoration: underline;
 }
+
 
 @media all and (max-width: 1080px){
 	h1{
