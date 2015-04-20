@@ -29,7 +29,7 @@ h2{
 h3{
 	color: #963fff;
 	font-size: 40px;	
-	margin-bottom: 0px;
+	margin: 0;
 	line-height: 40px;
 }
 
@@ -91,8 +91,18 @@ img{
 	text-align: center;
 	margin: 0 auto;	
 	border-bottom: 1px solid #ead3fd;
-	padding: 0 25px 20px;
+	padding: 40px 25px 20px;
+
 }
+
+.reason:hover{
+	background-image: url('../images/esmall.png');
+	background-repeat: no-repeat;
+	background-position: right bottom;	
+	background-color: #f5e9ff;
+}
+
+
 
 .reason p{
 	font-family: 'Roboto Slab';

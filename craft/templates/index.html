@@ -83,9 +83,7 @@
 
 	{% endif %}
 
-	<div class="container">
-
-		<ul class="reasons" id="reasons">
+	<ul class="reasons" id="reasons">
 
 		{% if selectedReasons|length %}
 
@@ -94,19 +92,23 @@
 				{% for reason in selectedReasons|reverse %}
 					<li id="reason{{loop.index}}" class="wow fadeInUp reason">
 
-					    <h3>Reason {{ loop.index }}</h3>
-					    
-					    {{ reason.body }}
+						<div class="container">
 
-						{% for person in reason.person %}
-						    {% if loop.first %}{% endif %}<a href="{{ siteUrl }}?person={{ person.slug }}#results" class="person">{{ person }}</a>{{ not loop.last ? ', ' }}
-						{% endfor %}
+						    <h3>Reason {{ loop.index }}</h3>
+						    
+						    {{ reason.body }}
 
-					    <span class="tags">
-					    	{% for tag in reason.tags %}
-							    <a href="{{ siteUrl }}?tag={{ tag.slug }}#results" class="tag">{{ tag }}</a>
-					    	{% endfor %}
-						</span>
+							{% for person in reason.person %}
+							    {% if loop.first %}{% endif %}<a href="{{ siteUrl }}?person={{ person.slug }}#results" class="person">{{ person }}</a>{{ not loop.last ? ', ' }}
+							{% endfor %}
+
+						    <span class="tags">
+						    	{% for tag in reason.tags %}
+								    <a href="{{ siteUrl }}?tag={{ tag.slug }}#results" class="tag">{{ tag }}</a>
+						    	{% endfor %}
+							</span>
+
+						</div><!-- END .container -->
 
 					</li>	
 
@@ -126,9 +128,7 @@
 
 		</li>
 
-		</ul>
-
-	</div>
+	</ul>
 
 	<div id="footer" class="wow fadeIn">
 
