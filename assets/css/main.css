@@ -49,10 +49,10 @@ img{
 }
 
 #header {
-	background-image: url('../images/zombz4.jpg');
+	background-image: url('../images/zombz_bg.jpg');
 	background-attachment: fixed;
 	background-repeat: no-repeat;
-	background-position: center center;
+	background-position: left center;
 	background-size: cover;
 	background-color: #963fff;
 	width: 100%;
