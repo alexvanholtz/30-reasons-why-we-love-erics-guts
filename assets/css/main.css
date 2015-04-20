@@ -101,7 +101,8 @@ img{
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-rendering: optimizeLegibility;  
-	margin-top: 25px;	
+	margin-top: 45px;	
+	margin-bottom: 50px;
 	line-height: 45px;
 }
 
@@ -221,6 +222,7 @@ a.colorize:hover{
 	}	
 	.reason p{
 		font-size: 25px;
+		margin-top: 25px;	
 		margin-bottom: 30px;	
 		padding: 0 50px;	
 		line-height: 40px;
