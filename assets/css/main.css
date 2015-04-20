@@ -90,19 +90,16 @@ img{
 .reason{
 	text-align: center;
 	margin: 0 auto;	
-	border-bottom: 1px solid #ead3fd;
+	border-bottom: 1px solid #f5e9ff;
 	padding: 40px 25px 20px;
-
 }
 
 .reason:hover{
 	background-image: url('../images/esmall.png');
 	background-repeat: no-repeat;
-	background-position: right bottom;	
+	background-position: 90% bottom;	
 	background-color: #f5e9ff;
 }
-
-
 
 .reason p{
 	font-family: 'Roboto Slab';
@@ -274,6 +271,9 @@ a.colorize:hover{
 	}
 	.reason p{
 		padding: 0 25px;	
+	}
+	.reason:hover{
+		background-image: none;
 	}
 }
 
