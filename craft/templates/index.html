@@ -21,7 +21,7 @@
 
 {% set paramPerson = craft.request.getParam('person') %}
 {% set paramTag = craft.request.getParam('tag') %}
-{% set reasons = craft.entries.section('reasons') %}
+{% set reasons = craft.entries.limit(null).section('reasons') %}
 
 {% if paramPerson == NULL %}
 	{% set selectedPerson = craft.tags.groupBy('people') %}
@@ -38,6 +38,8 @@
 {% set selectedReasons = reasons.relatedTo( 'and', {targetElement: selectedPerson }, {targetElement: selectedTag }).order('RAND()') %}
 
 {% block content %}
+
+{% set reasons2 = craft.entries.section('reasons').find() %}
 
 	<header id="header" class="clearfix">
 
