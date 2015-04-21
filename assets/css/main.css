@@ -98,6 +98,10 @@ img{
 	background-color: #f5e9ff;
 }
 
+.reason:hover{
+	background-image: url('../images/esmall.png');
+}
+
 .reason p{
 	font-family: 'Roboto Slab';
 	font-size: 30px;
