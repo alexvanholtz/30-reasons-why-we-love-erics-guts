@@ -57,14 +57,13 @@ img{
 	background-size: cover;
 	background-color: #963fff;
 	width: 100%;
-	padding: 100px 0;
+	padding: 75px 0;
 	color: #fff;
 }
 
 .header-wrapper {
 	margin: 0 auto; 
 	max-width: 1000px; 
-	background-color: red !important;
 	padding: 0 50px;
 }
 
@@ -90,14 +89,12 @@ img{
 .reason{
 	text-align: center;
 	margin: 0 auto;	
-	border-bottom: 1px solid #f5e9ff;
 	padding: 40px 25px 20px;
+	background-repeat: no-repeat;
+	background-position: 90% bottom;
 }
 
-.reason:hover{
-	background-image: url('../images/esmall.png');
-	background-repeat: no-repeat;
-	background-position: 90% bottom;	
+.reason:nth-child(even){
 	background-color: #f5e9ff;
 }
 
@@ -292,8 +289,17 @@ a.colorize:hover{
 	.reason p{
 		padding: 0 25px;	
 	}
+
+	.reason{
+		border-bottom: none;
+	}
+
+	.reason:nth-child(even){
+		background-color: #f5e9ff;
+	}
+
 	.reason:hover{
-		background-image: none;
+		background-image: none;		
 	}
 }
 

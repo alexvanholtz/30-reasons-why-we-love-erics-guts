@@ -92,19 +92,19 @@
 			{% cache globally using key "Reasons" ~ "-" ~ paramPerson ~ "-" ~ paramTag unless craft.config.devMode %}
 
 				{% for reason in selectedReasons|reverse %}
-					<li id="reason{{loop.index}}" class="wow fadeInUp reason">
+					<li id="reason{{loop.index}}" class="reason">
 
-						<div class="container">
+						<div class="container wow fadeInUp">
 
 						    <h3>Reason {{ loop.index }}</h3>
 						    
 						    {{ reason.body }}
 
 							{% for person in reason.person %}
-							    {% if loop.first %}{% endif %}<a href="{{ siteUrl }}?person={{ person.slug }}#results" class="person">{{ person }}</a>{{ not loop.last ? ', ' }}
+							    {% if loop.first %}{% endif %}<a href="{{ siteUrl }}?person={{ person.slug }}#results" class="person wow zoomIn">{{ person }}</a>{{ not loop.last ? ', ' }}
 							{% endfor %}
 
-						    <span class="tags">
+						    <span class="tags wow slideInUp">
 						    	{% for tag in reason.tags %}
 								    <a href="{{ siteUrl }}?tag={{ tag.slug }}#results" class="tag">{{ tag }}</a>
 						    	{% endfor %}
