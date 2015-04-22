@@ -91,7 +91,7 @@
 
 			{% cache globally using key "Reasons" ~ "-" ~ paramPerson ~ "-" ~ paramTag unless craft.config.devMode %}
 
-				{% for reason in selectedReasons|reverse %}
+				{% for reason in selectedReasons %}
 					<li id="reason{{loop.index}}" class="reason">
 
 						<div class="container wow fadeInUp">
@@ -120,7 +120,7 @@
 
 		{% endif %}
 
-		<li class="show_all wow fadeInUp">
+		<li class="show_all wow fadeIn">
 
 			<a href="{{ siteUrl }}" ><img class="wow slideInRight" src="{{ craft.config.environmentVariables.baseUrl }}assets/images/littlemustang.png" alt=""></a>
 
