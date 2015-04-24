@@ -22,24 +22,24 @@
 {% set paramPerson = craft.request.getParam('person') %}
 {% set paramTag = craft.request.getParam('tag') %}
 {% set reasons = craft.entries.limit(null).section('reasons') %}
+{% set people = craft.tags.group('people') %}
+{% set tags = craft.tags.group('default') %}
 
 {% if paramPerson == NULL %}
-	{% set selectedPerson = craft.tags.groupBy('people') %}
+	{% set selectedPerson = people %}
 {% else %}
-	{% set selectedPerson = craft.tags.groupBy('people').slug(paramPerson).first() %}
+	{% set selectedPerson = people.slug(paramPerson).first() %}
 {% endif %}
 
 {% if paramTag == NULL %}
-	{% set selectedTag = craft.tags.groupBy('default') %}
+	{% set selectedTag = tags %}
 {% else %}
-	{% set selectedTag = craft.tags.groupBy('default').slug(paramTag).first() %}
+	{% set selectedTag = tags.slug(paramTag).first() %}
 {% endif %}
 
 {% set selectedReasons = reasons.relatedTo( 'and', {targetElement: selectedPerson }, {targetElement: selectedTag }).order('RAND()') %}
 
 {% block content %}
-
-{% set reasons2 = craft.entries.section('reasons').find() %}
 
 	<header id="header" class="clearfix">
 
@@ -52,7 +52,7 @@
 			<div class="header-text">
 				<h1 class="wow fadeInDown">{{ siteName }}</h1>
 
-				<h2 class="wow fadeInDown">Actually, there are <span class="colorize">{{ reasons|length }} reasons</span> from <span class="colorize">{{ craft.tags.group('people').releatedTo(reasons)|length }} people</span>, but who's counting!</h2>
+				<h2 class="wow fadeInDown">Actually, there are <span class="colorize">{{ reasons|length }} reasons</span> from <span class="colorize">{{ people.releatedTo(reasons)|length }} people</span>, but who's counting!</h2>
 
 			</div>
 
@@ -60,30 +60,53 @@
 
 	</header>
 
-	{% if paramPerson != NULL or paramTag != NULL  %}
+	<div id="results" class="wow fadeIn">
 
-		<div id="results" class="wow fadeIn">
+		<div class="container clearfix">
 
-			<div class="container">
+			{% if paramTag != NULL %}
+					
+				<h2><span class="colorize">{% if selectedReasons|length %}{{ selectedReasons|length }}{% else %}0{% endif %} {% if selectedReasons|length > 1 or selectedReasons|length == 0 %}reasons{% else %}reason{% endif %}</span> tagged with <span class="colorize">{% if selectedReasons|length %}{{ selectedTag.title }}{% else %}{{ paramTag }}{% endif %}</span></h2>
 
-				{% if paramTag != NULL %}
-						
-					<h2>{% if selectedReasons|length %}{{ selectedReasons|length }}{% else %}0{% endif %} {% if selectedReasons|length > 1 or selectedReasons|length == 0 %}reasons{% else %}reason{% endif %} tagged with <span class="colorize">{% if selectedReasons|length %}{{ selectedTag.title }}{% else %}{{ paramTag }}{% endif %}</span></h2>
+			{% elseif paramPerson != NULL %}
+	
+				<h2><span class="colorize">{% if selectedReasons|length %}{{ selectedReasons|length }}{% else %}0{% endif %} {% if selectedReasons|length > 1 or selectedReasons|length == 0 %}reasons{% else %}reason{% endif %}</span> from <span class="colorize">{% if selectedReasons|length %}{{ selectedPerson.title }}{% else %}{{ paramPerson|capitalize }}{% endif %}</span></h2>
 
-				{% endif %}
+			{% else %}
 
-				{% if paramPerson != NULL %}
-		
-					<h2>{% if selectedReasons|length %}{{ selectedReasons|length }}{% else %}0{% endif %} {% if selectedReasons|length > 1 or selectedReasons|length == 0 %}reasons{% else %}reason{% endif %} from <span class="colorize">{% if selectedReasons|length %}{{ selectedPerson.title }}{% else %}{{ paramPerson|capitalize }}{% endif %}</span></h2>
+				<h2><span class="colorize">{{ reasons|length }} reasons</span> from <span class="colorize">{{ people.releatedTo(reasons)|length }} people</span></h2>				    
 
+			{% endif %}
 
-				{% endif %}
+			<div class="container-50">
 
-			</div>
+				<select onchange="location.href='{{ craft.request.url }}?person='+this.options[this.selectedIndex].value+'#results'">
+				    <option>Select a Person</option>
 
-		</div>
+					{% for person in people %}
+						{% set related = reasons.relatedTo(person)%}
+					    <option {% if paramPerson == person.slug %}selected{% endif %} value="{{ person.slug }}">{{ person.title }} [{{ related|length }} Reasons]</option>
+					{% endfor %}
+				</select>
 
-	{% endif %}
+			</div><!-- END container-50 -->
+
+			<div class="container-50">
+
+				<select onchange="location.href='{{ craft.request.url }}?tag='+this.options[this.selectedIndex].value+'#results'">
+				    <option>Select a Tag</option>						
+					{% for tag in tags %}
+						{% set related = reasons.relatedTo(tag)%}
+					    <option {% if paramTag == tag.slug %}selected{% endif %} value="{{ tag.slug }}">{{ tag.title }} [{{ related|length }} Reasons]</option>
+					{% endfor %}
+				</select>	
+
+			</div><!-- END container-50 -->
+
+		</div><!-- END container -->				
+
+	</div><!-- END #results -->
+    
 
 	<ul class="reasons" id="reasons">
 
