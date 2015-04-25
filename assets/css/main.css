@@ -66,6 +66,11 @@ img{
 	text-align: center;
 	font-size: 16px;
 	width: 100%;
+	background-color: #fff;
+	background-image: url('../images/select_arrow.png');
+	background-size: 25px 10px;
+	background-repeat: no-repeat;
+	background-position: right center;
 }
 
 #header {
@@ -162,11 +167,11 @@ a.tag:hover{
 
 .fixed{
 	position: fixed;
-	-webkit-transform: translateZ(0);
 }
 
 #results{
 	-webkit-transform: translateZ(0);	
+	transform: translateZ(0);	
   	top: 0;
     left: 0;
     z-index: 10000;	
@@ -326,13 +331,14 @@ a.colorize:hover{
 	}
 	.container-50{
 		width: 100%;
-		/*padding-bottom: 20px;*/
 	}
-
 	.container-50:nth-of-type(1){
 		padding-bottom: 20px;
 	}
-
+	.container-50 select{
+		font-size: 14px;
+		padding: 7px 10px;
+	}
 	.header-image{
 		width: 100%;
 	}
@@ -343,15 +349,12 @@ a.colorize:hover{
 	.reason p{
 		padding: 0 25px;	
 	}
-
 	.reason{
 		border-bottom: none;
 	}
-
 	.reason:nth-child(even){
 		background-color: #f5e9ff;
 	}
-
 	.reason:hover{
 		background-image: none;		
 	}

@@ -19,7 +19,7 @@
 		}	
 		else{
 			$('#results').removeClass('fixed');
-			$('#reasons').css('margin-top', 0);å
+			$('#reasons').css('margin-top', 0);
 		}
 
 	});
