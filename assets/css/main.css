@@ -160,6 +160,23 @@ a.tag:hover{
 	background-color: #692db3;
 }
 
+.fixed{
+	position: fixed;
+	-webkit-transform: translateZ(0);
+}
+
+#results{
+	-webkit-transform: translateZ(0);	
+  	top: 0;
+    left: 0;
+    z-index: 10000;	
+    width: 100%;
+}
+
+/*.extra-margin{
+	margin-top: 150px !important;
+}*/
+
 #results, #footer{
 	background-color: #963fff;
 	padding: 30px 0;

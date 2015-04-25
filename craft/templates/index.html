@@ -64,24 +64,12 @@
 
 		<div class="container clearfix">
 
-			{% if paramTag != NULL %}
-					
-				<h2><span class="colorize">{% if selectedReasons|length %}{{ selectedReasons|length }}{% else %}0{% endif %} {% if selectedReasons|length > 1 or selectedReasons|length == 0 %}reasons{% else %}reason{% endif %}</span> tagged with <span class="colorize">{% if selectedReasons|length %}{{ selectedTag.title }}{% else %}{{ paramTag }}{% endif %}</span></h2>
-
-			{% elseif paramPerson != NULL %}
-	
-				<h2><span class="colorize">{% if selectedReasons|length %}{{ selectedReasons|length }}{% else %}0{% endif %} {% if selectedReasons|length > 1 or selectedReasons|length == 0 %}reasons{% else %}reason{% endif %}</span> from <span class="colorize">{% if selectedReasons|length %}{{ selectedPerson.title }}{% else %}{{ paramPerson|capitalize }}{% endif %}</span></h2>
-
-			{% else %}
-
-				<h2><span class="colorize">{{ reasons|length }} reasons</span> from <span class="colorize">{{ people.releatedTo(reasons)|length }} people</span></h2>				    
-
-			{% endif %}
-
 			<div class="container-50">
 
 				<select onchange="location.href='{{ craft.request.url }}?person='+this.options[this.selectedIndex].value+'#results'">
-				    <option>Select a Person</option>
+					<option disabled>Select a person</option>
+
+				    <option value="">All people {% if paramTag == NULL and paramPerson == NULL %}[{{ selectedReasons|length }} Reasons]{% elseif paramPerson != NULL %}[{{ reasons|length }} Reasons]{% endif %}</option>
 
 					{% for person in people %}
 						{% set related = reasons.relatedTo(person)%}
@@ -94,10 +82,11 @@
 			<div class="container-50">
 
 				<select onchange="location.href='{{ craft.request.url }}?tag='+this.options[this.selectedIndex].value+'#results'">
-				    <option>Select a Tag</option>						
+					<option disabled>Select a tag</option>					
+				    <option value="">All tags {% if paramPerson == NULL and paramTag == NULL %}[{{ selectedReasons|length }} Reasons]{% elseif paramTag != NULL %}[{{ reasons|length }} Reasons]{% endif %}</option>						
 					{% for tag in tags %}
 						{% set related = reasons.relatedTo(tag)%}
-					    <option {% if paramTag == tag.slug %}selected{% endif %} value="{{ tag.slug }}">{{ tag.title }} [{{ related|length }} Reasons]</option>
+					    <option {% if paramTag == tag.slug %}selected{% endif %} value="{{ tag.slug }}">{{ tag.title|capitalize }} [{{ related|length }} Reasons]</option>
 					{% endfor %}
 				</select>	
 
@@ -149,8 +138,7 @@
 
 			<br/><br/><br/>
 
-			<a href="{{ siteUrl }}" >show all reasons</a>
-
+			<a href="#top">Back to top</a>
 		</li>
 
 	</ul>
