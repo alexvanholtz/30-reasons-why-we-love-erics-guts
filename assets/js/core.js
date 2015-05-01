@@ -1,8 +1,9 @@
 //Stick all dat js in an IIFE
 (function(){
 
-	var position = $(window).scrollTop();
-	var headerHeight = $('header#header').outerHeight();
+	//Position/header height variables
+	var position = $(window).scrollTop(),
+		headerHeight = $('header#header').outerHeight();
 
 	//Remove animatey classes if we've already scrolled down the page
 	if( position > headerHeight ){
@@ -29,6 +30,7 @@
 
 		});
 
+		//Click event to scroll user to the top of the page
 		$("a[href='#top']").click(function() {
 			$("html, body").animate({ scrollTop: 0 }, "slow");
 			return false;

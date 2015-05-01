@@ -67,7 +67,7 @@
 			<div class="container-50">
 
 				<select onchange="location.href='{{ craft.request.url }}?person='+this.options[this.selectedIndex].value+'#results'">
-					<option disabled>Select a person</option>
+					<option disabled>---- Select a person ----</option>
 
 				    <option value="">All people {% if paramTag == NULL and paramPerson == NULL %}[{{ selectedReasons|length }} Reasons]{% elseif paramPerson != NULL %}[{{ reasons|length }} Reasons]{% endif %}</option>
 
@@ -82,7 +82,7 @@
 			<div class="container-50">
 
 				<select onchange="location.href='{{ craft.request.url }}?tag='+this.options[this.selectedIndex].value+'#results'">
-					<option disabled>Select a tag</option>					
+					<option disabled>---- Select a tag ----</option>					
 				    <option value="">All tags {% if paramPerson == NULL and paramTag == NULL %}[{{ selectedReasons|length }} Reasons]{% elseif paramTag != NULL %}[{{ reasons|length }} Reasons]{% endif %}</option>						
 					{% for tag in tags %}
 						{% set related = reasons.relatedTo(tag)%}
@@ -104,6 +104,7 @@
 			{% cache globally using key "Reasons" ~ "-" ~ paramPerson ~ "-" ~ paramTag unless craft.config.devMode %}
 
 				{% for reason in selectedReasons %}
+
 					<li id="reason{{loop.index}}" class="reason">
 
 						<div class="container wow fadeInUp">
@@ -118,6 +119,11 @@
 
 						    <span class="tags wow slideInUp">
 						    	{% for tag in reason.tags %}
+						    		
+						    		{% if tag.slug == 'cars' and paramTag != 'cars'%}
+						    			{% set hasCarTag = true %}
+						    		{% endif %}
+
 								    <a href="{{ siteUrl }}?tag={{ tag.slug }}#results" class="tag">{{ tag }}</a>
 						    	{% endfor %}
 							</span>
