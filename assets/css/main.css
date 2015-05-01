@@ -41,6 +41,10 @@ a{
 	color: #963fff;	
 }
 
+a:hover{
+	color: #692db3;
+}
+
 img{
 	max-width: 100%;
 }
@@ -132,7 +136,9 @@ select option{
 }
 
 .reason:hover{
-	background-image: url('../images/esmall.png');
+	background-image: url('../images/esmall_2x.png');
+	background-repeat: no-repeat;
+	background-size: 182px 190px;
 }
 
 .reason p{
@@ -145,6 +151,10 @@ select option{
 	margin-top: 45px;	
 	margin-bottom: 50px;
 	line-height: 45px;
+}
+
+.reason p a{
+	font-size: 30px;
 }
 
 a.person{
@@ -186,10 +196,6 @@ a.tag:hover{
     z-index: 10000;	
     width: 100%;
 }
-
-/*.extra-margin{
-	margin-top: 150px !important;
-}*/
 
 #results, #footer{
 	background-color: #963fff;
@@ -253,14 +259,6 @@ a.colorize:hover{
 	text-decoration: underline;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
-	.reason:hover{
-		background-image: url('../images/esmall_2x.png');
-		background-repeat: no-repeat;
-		background-size: 182px 190px;
-    }
-}
-
 @media all and (max-width: 1080px){
 	h1{
 		font-size: 55px;
@@ -297,18 +295,13 @@ a.colorize:hover{
 		padding: 0 50px;	
 		line-height: 40px;
 	}
+	.reason p a{
+		font-size: 25px;
+	}	
 	.reason:hover{
-		background-image: url('../images/esmaller.png');
+		background-image: url('../images/esmaller_x2.png');
 		background-size: 154px 160px;		
     }	
-	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
-		.reason:hover{
-			background-image: url('../images/esmaller_x2.png');
-			background-repeat: no-repeat;
-			background-size: 154px 160px;
-	    }	
-
-	}
 
 }
 
@@ -383,6 +376,9 @@ a.colorize:hover{
 		padding: 0;		
 		line-height: 35px;
 	}	
+	.reason p a{
+		font-size: 20px;
+	}		
 	h3{
 		font-size: 30px;
 	}
